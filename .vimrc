@@ -1,4 +1,3 @@
-execute pathogen#infect()
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -28,9 +27,15 @@ Plugin 'VundleVim/Vundle.vim'
 " different version somewhere else.
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
-Plugin 'fatih/vim-go'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'SirVer/ultisnips'
+"Plugin 'fatih/vim-go'
+"Plugin 'AndrewRadev/splitjoin.vim'
+"Plugin 'SirVer/ultisnips'
+
+Plugin 'pangloss/vim-javascript'
+Plugin 'tpope/vim-fugitive'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'scrooloose/nerdtree'
+Plugin 'easymotion/vim-easymotion'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

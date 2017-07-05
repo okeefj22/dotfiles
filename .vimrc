@@ -189,3 +189,11 @@ autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" set colorscheme
+if has('gui_running')
+    colorscheme spacegray
+endif
+
+set guioptions=
+set guifont=Menlo\ Regular:h13

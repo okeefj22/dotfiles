@@ -199,5 +199,14 @@ set guioptions=
 set guifont=Menlo\ Regular:h13
 
 " nerdtree specific
+" open nerdtree when nothing specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" keyboard shortcut to open
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+
+" window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l

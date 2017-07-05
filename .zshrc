@@ -90,3 +90,6 @@ alias coursera="coursera-dl -u jacob.okeeffe22@mail.dcu.ie -p learnsumshtuff"
 # begin whatson completion
 . <(whatson --completion)
 # end whatson completion
+
+# alias for thefuck
+eval $(thefuck --alias)

@@ -197,3 +197,7 @@ endif
 
 set guioptions=
 set guifont=Menlo\ Regular:h13
+
+" nerdtree specific
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif

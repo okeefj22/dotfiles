@@ -93,3 +93,7 @@ alias coursera="coursera-dl -u jacob.okeeffe22@mail.dcu.ie -p learnsumshtuff"
 
 # alias for thefuck
 eval $(thefuck --alias)
+
+# setup editor
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/local/bin/mvim

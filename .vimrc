@@ -39,6 +39,8 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'posva/vim-vue'
 Plugin 'martinda/Jenkinsfile-vim-syntax'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

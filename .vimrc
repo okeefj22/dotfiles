@@ -205,7 +205,8 @@ set guifont=Menlo\ Regular:h13
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " keyboard shortcut to open
-nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <Leader>t :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
 " window navigation
 nnoremap <C-h> <C-w>h

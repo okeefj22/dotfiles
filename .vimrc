@@ -41,6 +41,7 @@ Plugin 'posva/vim-vue'
 Plugin 'martinda/Jenkinsfile-vim-syntax'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -190,8 +191,8 @@ autocmd FileType go nmap <leader>x :<C-u>call <SID>build_go_files()<CR>
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 
 " own preference
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " set colorscheme

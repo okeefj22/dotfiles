@@ -97,3 +97,7 @@ eval $(thefuck --alias)
 # setup editor
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/local/bin/mvim
+
+# begin whatson completion
+. <(whatson --completion)
+# end whatson completion

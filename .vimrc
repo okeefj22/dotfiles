@@ -44,6 +44,7 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'mattn/emmet-vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'ternjs/tern_for_vim'
+Plugin 'jremmen/vim-ripgrep'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

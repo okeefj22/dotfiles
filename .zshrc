@@ -5,7 +5,7 @@ export ZSH=/Users/jacob/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="xxf"
+ZSH_THEME="nicknisi"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,12 +49,14 @@ ZSH_THEME="xxf"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git jira globalias docker-compose)
 
 # User configuration
-export GOPATH="$HOME/go"
+export GOPATH="/usr/local/go"
 export GOBIN="$GOPATH/bin"
 export PATH="/usr/local/Cellar:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$GOBIN:$HOME/bin/javacc/bin/:$HOME/Library/Python/3.5/bin"
+export NVM_DIR="$HOME/.nvm"
+source $(brew --prefix nvm)/nvm.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -83,21 +85,48 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias cdmdfs="cd ~/go/src/github.com/CPSSD/MDFS"
-alias docktb="source /Applications/Docker/Docker\ Quickstart\ Terminal.app/Contents/Resources/Scripts/start.sh"
-alias coursera="coursera-dl -u jacob.okeeffe22@mail.dcu.ie -p learnsumshtuff"
+source $HOME/.aliases
 
 # begin whatson completion
-. <(whatson --completion)
+#. <(whatson --completion)
 # end whatson completion
-
-# alias for thefuck
-eval $(thefuck --alias)
 
 # setup editor
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/local/bin/mvim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export VIMCONFIG=$HOME/.config/nvim
+export VIMRC=$VIMCONFIG/init.vim
 
-# begin whatson completion
-. <(whatson --completion)
-# end whatson completion
+# Use ripgrep to create filetree for fzf
+# This will ignore files in your .gitignore
+export FZF_DEFAULT_COMMAND='rg --files'
+
+# docker autocompletion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+source /usr/local/etc/profile.d/z.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# custom function TODO: these should be moved to .zshrc/functions
+find_git_changes() {
+    # Allow user to supply commit author
+    if [ -z "$1" ]
+    then
+        AUTHOR=$(git config user.name)
+    else
+        AUTHOR=$1
+    fi
+
+    git log --no-merges --author="$AUTHOR" --name-only --pretty=format:"" | sort -u
+}
+
+# kompose autocompletion
+# source <(kompose completion zsh)
+
+# zsh syntax highlighting
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# if [ /usr/local/bin/kubectl ]; then source <(kubectl completion zsh); fi

@@ -31,10 +31,14 @@ Plugin 'VundleVim/Vundle.vim'
 "Plugin 'AndrewRadev/splitjoin.vim'
 "Plugin 'SirVer/ultisnips'
 
+Plugin 'airblade/vim-gitgutter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/syntastic'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'posva/vim-vue'
@@ -46,6 +50,10 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'ternjs/tern_for_vim'
 Plugin 'jremmen/vim-ripgrep'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'christoomey/vim-tmux-navigator'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -156,7 +164,15 @@ inoremap <C-U> <C-G>u<C-U>
 " vim:set ft=vim et sw=2:
 "
 " my own ruls
-set number
+
+" automatically toggle line number mode
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd Bufleave,FocusLost,InsertEnter * set relativenumber
+augroup END
+
 set showcmd
 let mapleader = "\<Space>"
 " automatically save current file when :make (or :GoBuild) called
@@ -171,8 +187,8 @@ map :te :tabe
 map <leader>p :set paste
 map <leader>q :set nopaste
 " remaps
-nnoremap ; :
-nnoremap : ;
+" nnoremap ; :
+" nnoremap : ;
 
 " vim-go specific
 map <C-n> :cn<CR>
@@ -205,7 +221,7 @@ if has('gui_running')
 endif
 
 set guioptions=
-set guifont=Menlo\ Regular:h13
+"set guifont=Menlo\ Regular:h13
 
 " nerdtree specific
 " open nerdtree when nothing specified
@@ -220,3 +236,18 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_disabled_filetypes=['html']
+let g:syntastic_python_python_exec = 'python3' 
+
+" keeps undo history even when you exit a file
+set undofile

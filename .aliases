@@ -1,0 +1,11 @@
+alias vim="nvim"
+alias vi="nvim"
+alias lp="lpass show --password -c"
+alias clr='clear'
+alias gs='git status'
+alias rg='rg -S' # smart case sensitivity be default
+
+# alias for thefuck
+eval $(thefuck --alias)
+
+

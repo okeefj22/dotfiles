@@ -1,0 +1,177 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must gotabove this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Vi mode for Zsh
+bindkey -v
+export KEYTIMEOUT=1 # makes switching modes quicker
+#source $HOME/.zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+# history setup
+HISTFILE=$HOME/.zhistory
+SAVEHIST=1000
+HISTSIZE=999
+setopt share_history 
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_verify
+
+# use the zsh hightlighting and suggestions packages
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# completion using arrow keys (based on history)
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
+
+# use my configured aliases
+source ~/.aliases.zsh
+
+# use zoxide
+eval "$(zoxide init zsh)"
+
+
+# ---- FZF -----
+
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+
+# -- Use fd instead of fzf --
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo \${}'"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
+
+
+# Enable completions
+autoload -U compinit; compinit -i
+
+# add additional completions to zsh
+fpath=(/opt/homebrew/share/zsh-completions/ $fpath)
+
+# In ~/.zshrc
+for plugin in $ZDOTDIR/plugins/*/*.plugin.zsh; do
+    source "$plugin"
+done
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences (like '%F{red}%d%f') here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# force zsh not to show completion menu, which allows fzf-tab to capture the unambiguous prefix
+zstyle ':completion:*' menu no
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# custom fzf flags
+# NOTE: fzf-tab does not follow FZF_DEFAULT_OPTS by default
+zstyle ':fzf-tab:*' fzf-flags --color=fg:1,fg+:2 --bind=tab:accept
+# To make fzf-tab follow FZF_DEFAULT_OPTS.
+# NOTE: This may lead to unexpected behavior since some flags break this plugin. See Aloxaf/fzf-tab#455.
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+
+
+
+
+
+
+# # Optional: Enhanced tab completion with fzf
+# # zstyle ':completion:*' fzf-search-display true
+# 
+# zstyle ':completion:*' completer _extensions _complete _approximate
+# #zstyle ':completion:*' menu select
+# #zstyle ':completion:*' gum choose --height=10
+# #
+# # CRTL-a for alias expansion
+# zle -C alias-expension complete-word _generic
+# bindkey '^a' alias-expension
+# zstyle ':completion:alias-expension:*' completer _expand_alias
+# # Enable fzf for completion
+# zstyle ':completion:*' fzf-search-display true
+# # Use fzf for path completion
+# zstyle ':completion:*' fzf true
+# # Configure completion styles
+# # Enable fzf for completion
+# zstyle ':completion:*' fzf-search-display true
+# 
+# # Use fzf for path completion
+# zstyle ':completion:*' fzf true
+# 
+# # Configure how fzf interfaces with completion
+# zstyle ':fzf-tab:*' fzf-flags --preview-window=right:60%
+# 
+# # Configure fzf completion preview
+# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
+# zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -1 --color=always $realpath'
+# 
+# # Custom group colors in completion menu
+# zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
+# 
+# # Show descriptions in completion menu
+# zstyle ':completion:*:descriptions' format '[%d]'
+# 
+# # Switch group using `,` and `.`
+# zstyle ':fzf-tab:*' switch-group ',' '.'
+# 
+# # Configure completion look and feel
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# zstyle ':completion:*' verbose yes
+# zstyle ':completion:*' menu select
+# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+
+source $ZDOTDIR/aliases/.aliases
+
+eval "$(atuin init zsh)"
+
+
+# bun completions
+[ -s "/Users/jacob.okeeffe/.bun/_bun" ] && source "/Users/jacob.okeeffe/.bun/_bun"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

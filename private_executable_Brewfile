@@ -6,7 +6,9 @@ tap "azure/kubelogin"
 tap "databricks/tap"
 tap "federico-terzi/espanso"
 tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
 tap "knqyf263/pet"
+tap "nikitabobko/tap"
 tap "owg-digital/rtls"
 tap "withgraphite/tap"
 
@@ -48,6 +50,7 @@ brew "visidata"         # CSV/data viewer
 
 # Development
 brew "colima"           # container runtime
+brew "delve"            # go debugger
 brew "docker-compose"
 brew "go"
 brew "lazydocker"       # docker TUI
@@ -61,9 +64,11 @@ brew "postgresql@16"
 brew "redis"
 
 # Utilities
+brew "asciinema"        # terminal session recorder
 brew "bitwarden-cli"
 brew "circumflex"       # hacker news reader
 brew "cliclick"         # CLI mouse/keyboard automation
+brew "duti"             # default application setter
 brew "espanso"          # text expander
 brew "ghostscript"      # PDF processor
 brew "gum"              # shell script UI
@@ -124,30 +129,79 @@ brew "gnutls"
 brew "java"
 brew "snappy"
 
-cask "alfred"
-cask "bitwarden"
-cask "boop"
-cask "calibre"
-cask "dash"
+# ============================================================================
+# Casks (GUI Applications)
+# ============================================================================
+
+# Window Management & Productivity
+cask "aerospace"            # tiling window manager
+cask "hiddenbar"           # hide menu bar items
+cask "homerow"             # keyboard navigation
+cask "karabiner-elements"  # keyboard customization
+cask "raycast"             # launcher/productivity
+cask "script-kit"          # automation scripts
+cask "spectacle"           # window management
+
+# Development Tools
 cask "docker"
-cask "drawio"
-cask "figma"
+cask "docker-desktop"
+cask "gitkraken"           # git client
+cask "iterm2"              # terminal
+cask "kitty"               # terminal
+cask "ghostty"             # terminal
+cask "warp"                # terminal
+cask "pycharm"             # python IDE
+cask "webstorm"            # javascript IDE
+cask "macvim-app"          # vim GUI
+cask "vimr"                # neovim GUI
+cask "visual-studio-code"
+cask "zed"                 # code editor
+cask "sublime-text"
+
+# Design & Media
+cask "affinity"            # design suite
+cask "figma"               # design tool
+cask "audacity"            # audio editor
+cask "iina"                # video player
+cask "kap"                 # screen recorder
+cask "shottr"              # screenshot tool
+
+# Browsers
 cask "firefox"
-cask "gitkraken"
-cask "iterm2"
-cask "karabiner-elements"
-cask "openlens"
+cask "vivaldi"
+
+# Productivity & Organization
+cask "alfred"
+cask "notion"
 cask "obsidian"
+cask "ticktick"            # todo app
+
+# Security & Privacy
+cask "bitwarden"
 cask "proton-drive"
 cask "proton-mail"
-cask "raycast"
-cask "setapp"
-cask "spectacle"
+cask "viscosity"           # VPN client
+
+# Database & Data Tools
+cask "openlens"            # kubernetes IDE
+cask "freelens"            # kubernetes IDE
+cask "studio-3t"           # mongodb client
+
+# Utilities
+cask "boop"                # text transformation
+cask "calibre"             # ebook manager
+cask "dash"                # documentation browser
+cask "drawio"              # diagramming
+cask "espanso"             # text expander
+cask "flow"                # pomodoro timer
+cask "flow-desktop"
+cask "iptvnator"           # IPTV player
+cask "setapp"              # app subscription service
+cask "virtualbox"          # virtualization
+
+# Entertainment
 cask "spotify"
 cask "steam"
-cask "studio-3t"
-cask "sublime-text"
-cask "viscosity"
-cask "visual-studio-code"
-cask "warp"
-cask "zed"
+
+# Fonts
+cask "font-meslo-lg-nerd-font"

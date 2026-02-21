@@ -1,50 +1,128 @@
+# ============================================================================
+# Taps
+# ============================================================================
+tap "atlassian/acli"
 tap "azure/kubelogin"
 tap "databricks/tap"
 tap "federico-terzi/espanso"
 tap "homebrew/bundle"
+tap "knqyf263/pet"
+tap "owg-digital/rtls"
 tap "withgraphite/tap"
 
+# ============================================================================
+# Personal Tools
+# ============================================================================
+
+# Modern CLI replacements (see AGENTS.md for details)
+brew "bat"              # cat replacement with syntax highlighting
+brew "eza"              # ls replacement with icons
+brew "fd"               # find replacement
+brew "ripgrep"          # grep replacement
+brew "zoxide"           # smart cd replacement
+
+# Shell & Terminal
+brew "atuin"            # shell history search
+brew "chezmoi"          # dotfile management
+brew "powerlevel10k"    # zsh theme
+brew "starship"         # alternative prompt
+brew "tmux"             # terminal multiplexer
+brew "zellij"           # modern terminal multiplexer
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-completions"
+brew "zsh-syntax-highlighting"
+
+# Git & GitHub
+brew "diff-so-fancy"    # better git diffs
+brew "difftastic"       # structural diff tool
+brew "gh"               # GitHub CLI
+brew "lazygit"          # git TUI
+
+# File & Data Tools
+brew "fzf"              # fuzzy finder
+brew "jq"               # JSON processor
+brew "ranger"           # file manager
+brew "tldr"             # simplified man pages
+brew "visidata"         # CSV/data viewer
+
+# Development
+brew "colima"           # container runtime
+brew "docker-compose"
+brew "go"
+brew "lazydocker"       # docker TUI
+brew "neovim"           # text editor
+brew "openjdk"
+brew "python"
+brew "uv"               # python package manager
+
+# Databases
+brew "postgresql@16"
+brew "redis"
+
+# Utilities
+brew "bitwarden-cli"
+brew "circumflex"       # hacker news reader
+brew "cliclick"         # CLI mouse/keyboard automation
+brew "espanso"          # text expander
+brew "ghostscript"      # PDF processor
+brew "gum"              # shell script UI
+brew "hyperfine"        # benchmarking tool
+brew "just"             # command runner
+brew "navi"             # interactive cheatsheet
+brew "opencode"         # OpenCode CLI
+brew "pet"              # command snippet manager
+brew "qemu"             # emulator
+brew "qpdf"             # PDF tools
+brew "terminal-notifier"
+brew "thefuck"          # command corrector
+brew "vhs"              # terminal recorder
+brew "wtfutil"          # terminal dashboard
+brew "yarn"
+brew "youtube-dl"
+brew "yt-dlp"
+
+# Python tools (via brew)
+brew "isort"            # python import sorter
+brew "pillow"           # python imaging
+brew "pytest"           # python testing
+
+# Deprecated/Replaced
+brew "z"                # replaced by zoxide, but kept for compatibility
+
+# ============================================================================
+# Work Tools
+# ============================================================================
+
+# Kubernetes & Cloud
 brew "argo"
 brew "argocd"
 brew "azure-cli"
-brew "bat"
-brew "bitwarden-cli"
-brew "colima"
-brew "docker-compose"
 brew "devspace"
-brew "diff-so-fancy"
-brew "espanso"
-brew "fd"
-brew "gh"
-brew "gnutls"
-brew "go"
-brew "graphite"
 brew "helm"
-brew "java"
-brew "jq"
 brew "k9s"
 brew "kube-ps1"
 brew "kubectx"
 brew "kubelogin"
 brew "kubernetes-cli"
 brew "minikube"
-brew "neovim"
-brew "parquet-cli"
-brew "postgresql@16"
-brew "python"
-brew "ranger"
-brew "redis"
-brew "ripgrep"
-brew "snappy"
-brew "terraform"
-brew "thefuck"
-brew "tldr"
 brew "velero"
-brew "wtfutil"
-brew "yarn"
-brew "z"
-brew "zsh"
-brew "zsh-autosuggestions"
+
+# Work-specific CLIs
+brew "acli"             # Atlassian CLI
+brew "jira-cli"
+brew "mongodb-atlas-cli"
+brew "rtls"             # OWG Digital RTLS
+
+# Infrastructure & Data
+brew "graphite"         # git workflow
+brew "parquet-cli"
+brew "terraform"
+
+# Dependencies (auto-installed but listing for completeness)
+brew "gnutls"
+brew "java"
+brew "snappy"
 
 cask "alfred"
 cask "bitwarden"

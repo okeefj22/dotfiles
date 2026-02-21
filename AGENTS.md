@@ -80,12 +80,15 @@
 - **Homebrew** - macOS package manager
   - Brewfile location: `~/Brewfile`
   - Organized into sections: Personal Tools, Work Tools, Dependencies
-  - ~85+ packages tracked (221 total installed including auto-dependencies)
+  - Check tracked packages: `grep -c "^brew\|^cask\|^tap" ~/Brewfile`
+  - Check installed: `brew list --formula | wc -l` (formulas), `brew list --cask | wc -l` (casks)
   - Run `brew bundle --file=~/Brewfile` to install all tracked packages
 - **uv** - Fast Python package manager
-  - Installed tools: `ruff` (linter), `sgpt` (shell-gpt)
-- **npm** - JavaScript packages (global: @anthropic-ai/claude-code, @budibase/cli, cli-typer)
-- **cargo** - Rust packages (only rustup installed)
+  - Check installed tools: `uv tool list`
+- **npm** - JavaScript packages
+  - Check global packages: `npm list -g --depth=0`
+- **cargo** - Rust packages
+  - Check installed: `cargo install --list`
 
 ---
 
@@ -296,6 +299,22 @@ ls -la ~/.config/
 ```bash
 # Check installed Homebrew packages
 cat ~/Brewfile
+
+# Count tracked brew packages
+grep -c "^brew\|^cask\|^tap" ~/Brewfile
+
+# Count installed packages
+brew list --formula | wc -l  # formulas
+brew list --cask | wc -l     # casks
+
+# Check global uv tools
+uv tool list
+
+# Check global npm packages
+npm list -g --depth=0
+
+# Check cargo installed tools
+cargo install --list
 
 # See command history patterns
 history | awk '{print $2}' | sort | uniq -c | sort -rn | head -20

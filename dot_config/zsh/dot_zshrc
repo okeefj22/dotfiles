@@ -28,6 +28,20 @@ setopt hist_verify
 setopt auto_cd              # cd to directory by typing its name
 setopt extended_glob        # Enable extended globbing patterns
 
+# Directory navigation
+setopt auto_pushd           # Automatically push directories to stack
+setopt pushd_ignore_dups    # Don't push duplicates
+setopt pushd_silent         # Don't print stack after pushd/popd
+
+# Completion
+setopt complete_in_word     # Complete from middle of word
+setopt always_to_end        # Move cursor to end after completion
+setopt correct              # Offer spelling corrections for commands
+
+# Other
+setopt interactive_comments # Allow comments in interactive shell
+setopt notify               # Report background job status immediately
+
 # use the zsh hightlighting and suggestions packages
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

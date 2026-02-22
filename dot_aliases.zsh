@@ -11,6 +11,12 @@ alias cat='bat'
 # git
 alias gcmsg='git commit -m'
 alias gcm='git checkout master'
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gl='git pull'
+alias grbm='git rebase master'
+alias gsta='git stash'
+alias gstaa='git stash apply'
 
 # gh
 alias ghd='gh dash'
@@ -26,3 +32,6 @@ alias lzg='lazygit'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+
+# python
+alias python='python3'

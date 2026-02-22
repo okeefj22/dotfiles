@@ -17,12 +17,16 @@ export KEYTIMEOUT=1 # makes switching modes quicker
 
 # history setup
 HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
+SAVEHIST=50000
+HISTSIZE=50000
 setopt share_history 
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
+
+# Shell behavior options
+setopt auto_cd              # cd to directory by typing its name
+setopt extended_glob        # Enable extended globbing patterns
 
 # use the zsh hightlighting and suggestions packages
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -114,60 +118,10 @@ zstyle ':fzf-tab:*' use-fzf-default-opts yes
 # switch group using `<` and `>`
 zstyle ':fzf-tab:*' switch-group '<' '>'
 
-
-
-
-
-
-
-# # Optional: Enhanced tab completion with fzf
-# # zstyle ':completion:*' fzf-search-display true
-# 
-# zstyle ':completion:*' completer _extensions _complete _approximate
-# #zstyle ':completion:*' menu select
-# #zstyle ':completion:*' gum choose --height=10
-# #
-# # CRTL-a for alias expansion
-# zle -C alias-expension complete-word _generic
-# bindkey '^a' alias-expension
-# zstyle ':completion:alias-expension:*' completer _expand_alias
-# # Enable fzf for completion
-# zstyle ':completion:*' fzf-search-display true
-# # Use fzf for path completion
-# zstyle ':completion:*' fzf true
-# # Configure completion styles
-# # Enable fzf for completion
-# zstyle ':completion:*' fzf-search-display true
-# 
-# # Use fzf for path completion
-# zstyle ':completion:*' fzf true
-# 
-# # Configure how fzf interfaces with completion
-# zstyle ':fzf-tab:*' fzf-flags --preview-window=right:60%
-# 
-# # Configure fzf completion preview
-# zstyle ':fzf-tab:complete:cd:*' fzf-preview 'exa -1 --color=always $realpath'
-# zstyle ':fzf-tab:complete:ls:*' fzf-preview 'exa -1 --color=always $realpath'
-# 
-# # Custom group colors in completion menu
-# zstyle ':fzf-tab:*' group-colors $FZF_TAB_GROUP_COLORS
-# 
-# # Show descriptions in completion menu
-# zstyle ':completion:*:descriptions' format '[%d]'
-# 
-# # Switch group using `,` and `.`
-# zstyle ':fzf-tab:*' switch-group ',' '.'
-# 
-# # Configure completion look and feel
-# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-# zstyle ':completion:*' verbose yes
-# zstyle ':completion:*' menu select
-# zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-
-
-source $ZDOTDIR/aliases/.aliases
-
-eval "$(atuin init zsh)"
+# Initialize atuin for shell history
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
 
 # bun completions

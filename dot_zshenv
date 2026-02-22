@@ -7,7 +7,7 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 # tool choice env vars
-export PATH="/Users/jacob.okeeffe/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export EDITOR="nvim"
 export VISUAL="nvim"
 export PAGER="less"
@@ -24,11 +24,11 @@ export BAT_THEME=base16-256
 . "$HOME/.cargo/env"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/jacob.okeeffe/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 # End of LM Studio CLI section
 
 # pnpm
-export PNPM_HOME="/Users/jacob.okeeffe/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -36,4 +36,4 @@ esac
 # pnpm end
 
 # uv
-export PATH="/Users/jacob.okeeffe/.local/share/../bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

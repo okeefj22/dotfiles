@@ -138,7 +138,7 @@
 
 ### Shell Configuration
 ```
-~/.config/zsh/.zshrc           # Main zsh config (177 lines)
+~/.config/zsh/.zshrc           # Main zsh config (131 lines)
 ~/.aliases.zsh                 # Custom aliases (28 lines)
 ~/.zshenv                      # Zsh environment variables
 ~/.zprofile                    # Zsh profile
@@ -236,6 +236,10 @@ lzg='lazygit'
 ~/Brewfile                          → private_executable_Brewfile
 ~/.config/wezterm/wezterm.lua       → dot_config/wezterm/wezterm.lua
 ~/.config/zsh/.zshrc                → dot_config/zsh/dot_zshrc
+~/.zshenv                           → dot_zshenv
+~/.zprofile                         → dot_zprofile
+~/.p10k.zsh                         → dot_p10k.zsh
+~/AGENTS.md                         → AGENTS.md
 ```
 
 ### chezmoi Workflows

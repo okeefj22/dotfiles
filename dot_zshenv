@@ -1,0 +1,39 @@
+# initial env vars -- keep first
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"  
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# tool choice env vars
+export PATH="/Users/jacob.okeeffe/bin:$PATH"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export PAGER="less"
+export BROWSER="firefox"
+
+
+# homebrew setup
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# configuration env vars
+export BAT_THEME=base16-256
+
+# tool added
+. "$HOME/.cargo/env"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/jacob.okeeffe/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# pnpm
+export PNPM_HOME="/Users/jacob.okeeffe/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# uv
+export PATH="/Users/jacob.okeeffe/.local/share/../bin:$PATH"

@@ -1,0 +1,7 @@
+alias gco="git checkout"
+alias gcb="git checkout -b"
+alias gl="git pull"
+alias grbm="git rebase master"
+alias gsta="git stash"
+alias gstaa="git stash apply"
+alias python="python3.14"

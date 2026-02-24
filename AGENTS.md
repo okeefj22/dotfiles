@@ -174,7 +174,10 @@
 ~/.config/atuin/               # Shell history config
 ~/.config/gh/                  # GitHub CLI config
 ~/Brewfile                     # Homebrew packages
+~/justfile                     # Just command runner - for random scripts and utilities
 ```
+
+**Note**: I use `~/justfile` to capture random scripts and utilities. Run commands with `just <command-name>`.
 
 ---
 

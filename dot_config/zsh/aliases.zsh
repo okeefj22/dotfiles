@@ -36,5 +36,3 @@ alias ....='cd ../../..'
 # python
 alias python='python3.14'
 
-# opencode
-alias ai='opencode -s ses_36f7766b8ffeB2hosxv2CCVxPu run'

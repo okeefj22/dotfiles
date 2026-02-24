@@ -8,7 +8,7 @@ fi
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f "$ZDOTDIR/p10k.zsh" ]] || source "$ZDOTDIR/p10k.zsh"
 
 # Vi mode for Zsh
 bindkey -v
@@ -51,7 +51,7 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 # use my configured aliases
-source ~/.aliases.zsh
+source "$ZDOTDIR/aliases.zsh"
 
 # use zoxide
 eval "$(zoxide init zsh)"

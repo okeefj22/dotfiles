@@ -34,4 +34,4 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # python
-alias python='python3'
+alias python='python3.14'

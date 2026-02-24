@@ -4,7 +4,7 @@ alias shorthand +command:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    ALIASES_FILE="$HOME/.aliases.zsh"
+    ALIASES_FILE="$ZDOTDIR/aliases.zsh"
     SHORTHAND="{{ shorthand }}"
     COMMAND="{{ command }}"
 

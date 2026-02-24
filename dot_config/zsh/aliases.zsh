@@ -17,6 +17,7 @@ alias gl='git pull'
 alias grbm='git rebase master'
 alias gsta='git stash'
 alias gstaa='git stash apply'
+alias gstap='git stash pop'
 
 # gh
 alias ghd='gh dash'

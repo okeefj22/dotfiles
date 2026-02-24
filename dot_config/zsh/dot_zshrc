@@ -52,6 +52,7 @@ bindkey '^[[B' history-search-forward
 
 # use my configured aliases
 source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/functions.zsh"
 
 # use zoxide
 eval "$(zoxide init zsh)"

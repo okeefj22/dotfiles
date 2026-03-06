@@ -18,6 +18,7 @@ alias grbm='git rebase master'
 alias gsta='git stash'
 alias gstaa='git stash apply'
 alias gstap='git stash pop'
+alias gpsup='git push -u origin HEAD'
 
 # gh
 alias ghd='gh dash'
@@ -37,3 +38,9 @@ alias ....='cd ../../..'
 # python
 alias python='python3.14'
 
+
+# while
+alias wiggle='while true; do cliclick m:542,388; sleep 60; done'
+
+# bat
+alias aliases='bat /Users/jacob.okeeffe/.config/zsh/aliases.zsh'

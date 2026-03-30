@@ -2,7 +2,7 @@
 
 > **Purpose**: This file serves as a living source of truth for my development environment. It documents the CLI tools, configurations, and workflows I actively use (not just what's installed). Use this to understand my setup and preferences.
 
-**Last Updated**: 2026-02-20
+**Last Updated**: 2026-03-30
 
 ---
 
@@ -62,7 +62,7 @@
 
 ### Shell & History
 - **atuin** - Shell history search and sync
-- **powerlevel10k** - Zsh theme (config: `~/.p10k.zsh`)
+- **powerlevel10k** - Zsh theme (config: `~/.config/zsh/p10k.zsh`)
 
 ---
 
@@ -138,11 +138,12 @@
 
 ### Shell Configuration
 ```
-~/.config/zsh/.zshrc           # Main zsh config (131 lines)
-~/.aliases.zsh                 # Custom aliases (28 lines)
+~/.config/zsh/.zshrc           # Main zsh config
+~/.config/zsh/aliases.zsh      # Custom aliases
+~/.config/zsh/functions.zsh    # Shell functions (ai integration)
+~/.config/zsh/p10k.zsh         # Powerlevel10k theme (1712 lines)
 ~/.zshenv                      # Zsh environment variables
 ~/.zprofile                    # Zsh profile
-~/.p10k.zsh                    # Powerlevel10k theme (1712 lines)
 ```
 
 ### Git Configuration
@@ -173,6 +174,8 @@
 ~/.config/k9s/                 # Kubernetes TUI config
 ~/.config/atuin/               # Shell history config
 ~/.config/gh/                  # GitHub CLI config
+~/.config/gh-dash/             # GitHub dashboard config
+~/.config/zed/                 # Zed editor config
 ~/Brewfile                     # Homebrew packages
 ~/justfile                     # Just command runner - for random scripts and utilities
 ```
@@ -184,7 +187,7 @@
 ## Shell Configuration
 
 ### Aliases
-**Location**: `~/.aliases.zsh`
+**Location**: `~/.config/zsh/aliases.zsh`
 
 Key aliases:
 ```bash
@@ -235,15 +238,66 @@ lzg='lazygit'
 
 ### Currently Managed Files
 ```
-~/.aliases.zsh                      → dot_aliases.zsh
-~/Brewfile                          → private_executable_Brewfile
-~/.config/wezterm/wezterm.lua       → dot_config/wezterm/wezterm.lua
+# Shell configuration
 ~/.config/zsh/.zshrc                → dot_config/zsh/dot_zshrc
+~/.config/zsh/aliases.zsh           → dot_config/zsh/aliases.zsh
+~/.config/zsh/functions.zsh         → dot_config/zsh/functions.zsh
+~/.config/zsh/p10k.zsh             → dot_config/zsh/p10k.zsh
 ~/.zshenv                           → dot_zshenv
 ~/.zprofile                         → dot_zprofile
-~/.p10k.zsh                         → dot_p10k.zsh
+
+# Git configuration (templated)
+~/.gitconfig                        → dot_gitconfig
+~/.gitconfig-personal               → dot_gitconfig-personal.tmpl
+~/.gitconfig-work                   → dot_gitconfig-work.tmpl
+
+# Editor configs
+~/.config/nvim/init.lua             → dot_config/nvim/init.lua
+~/.config/nvim/lua/.../options.lua  → dot_config/nvim/lua/.../options.lua
+~/.config/zed/settings.json         → dot_config/zed/private_settings.json
+
+# Terminal configs
+~/.config/wezterm/wezterm.lua       → dot_config/wezterm/wezterm.lua
+~/.config/ghostty/config            → dot_config/ghostty/config
+
+# Tool configs
+~/.config/karabiner/karabiner.json  → dot_config/private_karabiner/private_karabiner.json
+~/.config/lazygit/config.yml        → dot_config/lazygit/config.yml
+~/.config/k9s/aliases.yaml          → dot_config/private_k9s/private_aliases.yaml
+~/.config/gh/config.yml             → dot_config/gh/private_config.yml
+~/.config/gh-dash/config.yml        → dot_config/gh-dash/config.yml
+
+# Package management
+~/Brewfile                          → private_executable_Brewfile
+
+# Scripts & utilities
+~/justfile                          → justfile
+~/.local/bin/alias-insert           → private_dot_local/bin/executable_alias-insert
+
+# Documentation
 ~/AGENTS.md                         → AGENTS.md
+~/AI-SESSIONS.md                    → AI-SESSIONS.md
 ```
+
+### External Dependencies (`.chezmoiexternal.toml`)
+```
+~/.config/zsh/plugins/fzf-tab  → git-repo from github.com/Aloxaf/fzf-tab
+```
+
+### Bootstrap Scripts
+```
+run_once_01-install-homebrew.sh     # Installs Homebrew if missing
+run_onchange_02-brew-bundle.sh.tmpl # Runs brew bundle when Brewfile changes
+run_once_03-setup-symlinks.sh       # Creates symlinks (e.g. Vivaldi → ~/.local/bin/vivaldi)
+run_once_04-macos-defaults.sh       # Applies macOS system preferences
+```
+
+### Config Template (`.chezmoi.toml.tmpl`)
+On `chezmoi init`, prompts for:
+- Personal git name and email
+- Work git email
+
+These values are used to template `~/.gitconfig-personal` and `~/.gitconfig-work`.
 
 ### chezmoi Workflows
 ```bash
@@ -269,6 +323,24 @@ chezmoi cd && git push
 chezmoi update
 ```
 
+### New Machine Bootstrap
+```bash
+# 1. Install chezmoi and apply dotfiles (one command)
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply okeefj22
+
+# 2. chezmoi will prompt for: personal name, personal email, work email
+# 3. Bootstrap scripts run automatically:
+#    - Homebrew installed if missing
+#    - brew bundle installs all packages from Brewfile
+#    - App symlinks created (e.g. Vivaldi → ~/.local/bin/vivaldi)
+#    - macOS defaults applied (Dock, Finder, keyboard, screenshots)
+#    - fzf-tab plugin cloned via .chezmoiexternal
+# 4. Manual steps still needed:
+#    - SSH keys: generate or restore from backup
+#    - gh auth login: authenticate GitHub CLI
+#    - Rust: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
 ---
 
 ## How to Discover My Setup
@@ -281,13 +353,13 @@ chezmoi update
 cat ~/.config/zsh/.zshrc
 
 # Aliases
-cat ~/.aliases.zsh
+cat ~/.config/zsh/aliases.zsh
 
 # Git setup
 cat ~/.gitconfig
 
 # Powerlevel10k theme
-cat ~/.p10k.zsh
+cat ~/.config/zsh/p10k.zsh
 
 # Neovim config
 cat ~/.config/nvim/init.lua

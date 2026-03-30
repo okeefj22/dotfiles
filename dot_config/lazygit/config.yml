@@ -1,0 +1,10 @@
+customCommands:
+  - key: '<c-f>'
+    context: 'stash'
+    prompts:
+      - type: 'input'
+        title: 'Search stashes'
+        initialValue: ''
+    command: 'git stash list -i -G "{{index .PromptResponses 0}}"'
+    loadingText: 'Searching stashes...'
+    output: log

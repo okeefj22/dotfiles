@@ -1,0 +1,16 @@
+#!/bin/bash
+# Install Homebrew packages from Brewfile
+# This runs whenever the Brewfile content changes (hash in comment below)
+# Brewfile hash: {{ include "private_executable_Brewfile" | sha256sum }}
+
+set -euo pipefail
+
+if ! command -v brew &>/dev/null; then
+    echo "Homebrew is not installed. Skipping brew bundle."
+    exit 0
+fi
+
+echo "Running brew bundle..."
+brew bundle --no-lock --file="{{ .chezmoi.homeDir }}/Brewfile"
+
+echo "Brew bundle complete."

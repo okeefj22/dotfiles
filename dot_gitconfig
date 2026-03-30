@@ -1,0 +1,18 @@
+[includeIf "gitdir:~/source-code/work/"]
+    path = ~/.gitconfig-work
+[includeIf "gitdir:~/source-code/personal/"]
+    path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.local/"]
+    path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.config/"]
+    path = ~/.gitconfig-personal
+[includeIf "gitdir:~/.kenv/"]
+    path = ~/.gitconfig-personal
+[pull]
+	rebase = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

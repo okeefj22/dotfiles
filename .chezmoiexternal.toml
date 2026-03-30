@@ -1,0 +1,11 @@
+# External dependencies managed by chezmoi
+# These are cloned/downloaded automatically on `chezmoi apply`
+
+# fzf-tab: Tab completion using fzf
+# https://github.com/Aloxaf/fzf-tab
+[".config/zsh/plugins/fzf-tab"]
+    type = "git-repo"
+    url = "https://github.com/Aloxaf/fzf-tab.git"
+    refreshPeriod = "168h"
+    [".config/zsh/plugins/fzf-tab".pull]
+        rebase = true

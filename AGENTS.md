@@ -2,7 +2,15 @@
 
 > **Purpose**: This file serves as a living source of truth for my development environment. It documents the CLI tools, configurations, and workflows I actively use (not just what's installed). Use this to understand my setup and preferences.
 
-**Last Updated**: 2026-03-30
+**Last Updated**: 2026-03-31
+
+> **Privacy**: This file, `AI-SESSIONS.md`, and `~/ai-sessions/` are tracked by chezmoi and published to a **public GitHub repo** (`okeefj22/dotfiles`). Never include sensitive information: passwords, API keys, tokens, internal URLs, proprietary code, or work-specific details that shouldn't be public.
+
+---
+
+## Related Files
+
+- **[AI-SESSIONS.md](AI-SESSIONS.md)** - Index of past AI-assisted work sessions. Consult this when resuming previous work or checking if something has already been done. Individual session details live in `~/ai-sessions/`.
 
 ---
 
@@ -277,6 +285,7 @@ lzg='lazygit'
 # Documentation
 ~/AGENTS.md                         → AGENTS.md
 ~/AI-SESSIONS.md                    → AI-SESSIONS.md
+~/ai-sessions/                      → ai-sessions/ (individual session logs)
 ```
 
 ### External Dependencies (`.chezmoiexternal.toml`)

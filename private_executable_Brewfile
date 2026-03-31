@@ -185,8 +185,6 @@ cask "calibre"             # ebook manager
 cask "dash"                # documentation browser
 cask "drawio"              # diagramming
 cask "espanso"             # text expander
-cask "flow"                # pomodoro timer
-cask "flow-desktop"
 cask "iptvnator"           # IPTV player
 cask "setapp"              # app subscription service
 cask "virtualbox"          # virtualization

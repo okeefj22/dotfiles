@@ -133,7 +133,7 @@
 - Source directory: `~/.local/share/chezmoi`
 - Auto-commit enabled
 - Auto-apply on edit enabled
-- Git remote: HTTPS (uses GitHub CLI auth)
+- Git remote: SSH via `github.com-personal` host alias (auth independent of `gh auth` active account)
 - See [Dotfile Management](#dotfile-management) section below
 
 ### 4. Custom Keyboard Mappings
@@ -239,7 +239,8 @@ lzg='lazygit'
 ### chezmoi Setup
 - **Source directory**: `~/.local/share/chezmoi`
 - **Destination**: `~` (home directory)
-- **Git remote**: `https://github.com/okeefj22/dotfiles.git`
+- **Git remote**: `git@github.com-personal:okeefj22/dotfiles.git`
+- **Auth**: SSH key (`~/.ssh/id_ed25519_personal`) via `github.com-personal` host alias - independent of `gh auth` active account
 - **Auto-commit**: ✅ Enabled
 - **Auto-push**: ❌ Disabled (manual push required)
 - **Edit auto-apply**: ✅ Enabled
@@ -348,6 +349,9 @@ sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply okeefj22
 #    - SSH keys: generate or restore from backup
 #    - gh auth login: authenticate GitHub CLI
 #    - Rust: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#    - Switch chezmoi remote to SSH (so push doesn't depend on gh auth):
+#        gh auth refresh -h github.com -s admin:public_key
+#        just setup-chezmoi-ssh
 ```
 
 ---

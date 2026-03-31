@@ -1,5 +1,5 @@
 #!/bin/bash
-# Create symlinks for GUI applications that don't add themselves to PATH
+# Create wrapper scripts/symlinks for GUI applications that don't add themselves to PATH
 # This runs once per machine via chezmoi run_once_
 
 set -euo pipefail
@@ -7,9 +7,28 @@ set -euo pipefail
 LINK_DIR="$HOME/.local/bin"
 mkdir -p "$LINK_DIR"
 
-# Symlink entries: "name|target"
+# --- Wrapper scripts ---
+# Some apps (like Vivaldi) can't be symlinked directly because the binary
+# resolves framework paths relative to itself. Use `open -a` instead.
+
+# Vivaldi wrapper
+VIVALDI_WRAPPER="$LINK_DIR/vivaldi"
+if [ -d "/Applications/Vivaldi.app" ]; then
+    rm -f "$VIVALDI_WRAPPER"
+    cat > "$VIVALDI_WRAPPER" << 'WRAPPER'
+#!/bin/bash
+open -a "Vivaldi" "$@"
+WRAPPER
+    chmod +x "$VIVALDI_WRAPPER"
+    echo "Created wrapper: vivaldi -> open -a Vivaldi"
+else
+    echo "Warning: /Applications/Vivaldi.app not found. Skipping vivaldi wrapper."
+    echo "  Install it first (e.g. via brew bundle) and re-run: chezmoi apply"
+fi
+
+# --- Direct symlinks ---
+# Add entries here for apps that work fine as direct symlinks: "name|target"
 SYMLINKS="
-vivaldi|/Applications/Vivaldi.app/Contents/MacOS/Vivaldi
 "
 
 echo "$SYMLINKS" | while IFS='|' read -r name target; do

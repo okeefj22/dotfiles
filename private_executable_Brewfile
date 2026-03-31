@@ -6,7 +6,6 @@ tap "azure/kubelogin"
 tap "databricks/tap"
 tap "federico-terzi/espanso"
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "knqyf263/pet"
 tap "nikitabobko/tap"
 tap "withgraphite/tap"
@@ -141,13 +140,9 @@ cask "script-kit"          # automation scripts
 cask "spectacle"           # window management
 
 # Development Tools
-cask "docker"
-cask "docker-desktop"
 cask "gitkraken"           # git client
 cask "iterm2"              # terminal
-cask "kitty"               # terminal
 cask "ghostty"             # terminal
-cask "warp"                # terminal
 cask "pycharm"             # python IDE
 cask "webstorm"            # javascript IDE
 cask "macvim-app"          # vim GUI
@@ -181,7 +176,6 @@ cask "proton-mail"
 cask "viscosity"           # VPN client
 
 # Database & Data Tools
-cask "openlens"            # kubernetes IDE
 cask "freelens"            # kubernetes IDE
 cask "studio-3t"           # mongodb client
 

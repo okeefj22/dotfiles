@@ -7,16 +7,16 @@ set -euo pipefail
 LINK_DIR="$HOME/.local/bin"
 mkdir -p "$LINK_DIR"
 
-# Map of symlink name -> application binary path
-declare -A SYMLINKS=(
-    ["vivaldi"]="/Applications/Vivaldi.app/Contents/MacOS/Vivaldi"
-)
+# Symlink entries: "name|target"
+SYMLINKS="
+vivaldi|/Applications/Vivaldi.app/Contents/MacOS/Vivaldi
+"
 
-for name in "${!SYMLINKS[@]}"; do
-    target="${SYMLINKS[$name]}"
+echo "$SYMLINKS" | while IFS='|' read -r name target; do
+    [ -z "$name" ] && continue
     link="$LINK_DIR/$name"
 
-    if [[ -e "$target" ]]; then
+    if [ -e "$target" ]; then
         ln -sf "$target" "$link"
         echo "Linked $name -> $target"
     else

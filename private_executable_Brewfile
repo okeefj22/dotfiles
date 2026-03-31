@@ -116,7 +116,6 @@ brew "velero"
 brew "acli"             # Atlassian CLI
 brew "jira-cli"
 brew "mongodb-atlas-cli"
-brew "rtls"             # OWG Digital RTLS
 
 # Infrastructure & Data
 brew "graphite"         # git workflow

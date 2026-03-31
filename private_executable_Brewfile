@@ -187,7 +187,6 @@ cask "drawio"              # diagramming
 cask "espanso"             # text expander
 cask "iptvnator"           # IPTV player
 cask "setapp"              # app subscription service
-cask "virtualbox"          # virtualization
 
 # Entertainment
 cask "spotify"

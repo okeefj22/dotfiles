@@ -11,6 +11,6 @@ if ! command -v brew &>/dev/null; then
 fi
 
 echo "Running brew bundle..."
-brew bundle --no-lock --file="{{ .chezmoi.homeDir }}/Brewfile"
+brew bundle --file="{{ .chezmoi.homeDir }}/Brewfile"
 
 echo "Brew bundle complete."

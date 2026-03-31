@@ -9,7 +9,6 @@ tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "knqyf263/pet"
 tap "nikitabobko/tap"
-tap "owg-digital/rtls"
 tap "withgraphite/tap"
 
 # ============================================================================

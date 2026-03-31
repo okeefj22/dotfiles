@@ -12,7 +12,7 @@
 
 | Date | File | Summary |
 |------|------|---------|
-| 2026-03-31 | [2026-03-31-session-linking.md](ai-sessions/2026-03-31-session-linking.md) | Linked AGENTS.md and AI-SESSIONS.md, split sessions into individual files |
+| 2026-03-31 | [2026-03-31-session-linking.md](ai-sessions/2026-03-31-session-linking.md) | Linked AGENTS.md and AI-SESSIONS.md, split sessions into individual files, fixed chezmoi SSH auth |
 | 2026-02-22 | [2026-02-22-dotfile-setup.md](ai-sessions/2026-02-22-dotfile-setup.md) | Chezmoi setup, AGENTS.md creation, zsh cleanup, Brewfile overhaul |
 
 ---
